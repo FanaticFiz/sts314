@@ -49,8 +49,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients.inMemory()
                 .withClient("admin")
                 .secret("{noop}geoserver")
-                .accessTokenValiditySeconds(8600)
-                .refreshTokenValiditySeconds(-1)
+                .accessTokenValiditySeconds(60 * 60 * 2)
+                .refreshTokenValiditySeconds(60 * 60 * 24)
                 .scopes("read", "write")
                 .authorizedGrantTypes("password", "refresh_token");
     }
