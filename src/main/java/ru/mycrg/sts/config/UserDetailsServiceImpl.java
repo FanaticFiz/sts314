@@ -2,14 +2,12 @@ package ru.mycrg.sts.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.mycrg.sts.TempUser;
 
@@ -27,8 +25,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // hard coding the users. All passwords must be encoded.
         final List<TempUser> users = Arrays.asList(
-                new TempUser(1, "fiz", new BCryptPasswordEncoder().encode("314"), "USER")
-//                new TempUser(2, "admin", encoder.encode("314"), "ADMIN")
+                new TempUser(1, "fiz", "{noop}314", "USER"),
+                new TempUser(2, "admin", "{noop}314314", "ADMIN")
         );
 
         for(TempUser user: users) {
