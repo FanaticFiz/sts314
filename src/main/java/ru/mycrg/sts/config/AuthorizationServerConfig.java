@@ -1,6 +1,7 @@
 package ru.mycrg.sts.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +19,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+    @Value("${security.jwt.secret:vjp4lLW_QmjMHiUw1OBVRIZH}")
+    private String secret;
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -27,7 +31,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigner(new MacSigner("vjp4lLW_QmjMHiUw1OBVRIZH"));
+        converter.setSigner(new MacSigner(secret));
 
         return converter;
     }
