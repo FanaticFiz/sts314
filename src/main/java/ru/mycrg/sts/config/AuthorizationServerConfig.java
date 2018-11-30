@@ -27,7 +27,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigner(new MacSigner("fiz_fiz"));
+        converter.setSigner(new MacSigner("vjp4lLW_QmjMHiUw1OBVRIZH"));
 
         return converter;
     }
